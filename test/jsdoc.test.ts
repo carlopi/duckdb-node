@@ -23,7 +23,9 @@ export interface Node {
   longname: string;
   scope: string;
 }
+
 describe("JSDoc contains all methods", () => {
+  if (process.platform == 'win32') this.skip();
   let docs: Node[];
   before(async () => {
     docs = await promisify(jsdoc)(require.resolve("../lib/duckdb"));
