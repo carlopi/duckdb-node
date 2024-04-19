@@ -30,18 +30,22 @@ describe("JSDoc contains all methods", () => {
   })
 
   function checkDocs(obj: object, scope: string) {
+console.log(scope);
+console.log(obj);
     const symbols = Object.getOwnPropertySymbols(obj).map(i => lastDot(i.toString()));
     const expected = Object
       .getOwnPropertyNames(obj)
       .concat(symbols)
       .sort()
       .filter(name => name !== 'constructor' && name !== 'default');
-
+	
+console.log(expected);
     const actual = docs
       .filter((node) => node.memberof === scope && !node.undocumented && node.name !== 'sql')  // `sql` is a field, so won't show up in the prototype
       .map((node) => lastDot(node.name))
       .sort();
 
+console.log(actual);
     expect(expected).to.deep.equals(actual, 'items missing from documentation');
   }
 
