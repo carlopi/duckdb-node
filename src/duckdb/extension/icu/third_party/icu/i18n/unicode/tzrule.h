@@ -674,7 +674,7 @@ public:
      * @return  true if the given <code>TimeZoneRule</code> objects are semantically equal.
      * @stable ICU 3.8
      */
-    virtual UBool operator==(const TimeZoneRule& that) const;
+    virtual UBool operator==(const TimeZoneRule& that) const override;
 
     /**
      * Return true if the given <code>TimeZoneRule</code> objects are semantically unequal. Objects
