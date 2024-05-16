@@ -313,3 +313,26 @@ jobs:
       - name: Node
         shell: bash
         run: ./scripts/node_build_win.sh
+  example_matrix:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, ubuntu-22.04, ubuntu-20.04, windows-2019, macos-12, macos-13, macos-14]
+        version: [20]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+
+      - name: Install duckdb
+        run: |
+          npm install duckdb
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run minor test
+        shell: bash
+        run: |
+          node example.js
