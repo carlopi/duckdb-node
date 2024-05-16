@@ -322,13 +322,13 @@ jobs:
         with:
           node-version: ${{ matrix.version }}
 
-      - name: Install duckdb
-        run: |
-          npm install duckdb
-
       - uses: actions/checkout@v3
         with:
           sparse-checkout: .
+
+      - name: Install duckdb
+        run: |
+          npm install duckdb
 
       - name: Run minor test
         shell: bash
