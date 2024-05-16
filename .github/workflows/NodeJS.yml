@@ -23,8 +23,6 @@ jobs:
       DUCKDB_NODE_BUILD_CACHE: 0
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-python@v4
         with:
@@ -330,7 +328,7 @@ jobs:
 
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          sparse-checkout: .
 
       - name: Run minor test
         shell: bash
