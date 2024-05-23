@@ -352,7 +352,7 @@ jobs:
 
       - name: Install duckdb
         run: |
-          bun add duckdb@0.10.2
+          bun add duckdb@0.10.2 --verbose
           bun install duckdb
 
       - name: Run minor test
