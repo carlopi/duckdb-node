@@ -352,7 +352,31 @@ jobs:
 
       - name: Install duckdb
         run: |
-          bun install duckdb@next
+          bun install duckdb
+
+      - name: Run minor test
+        shell: bash
+        run: |
+          bun examples/example.js
+
+  test_matrix_npm_bun:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, ubuntu-22.04, ubuntu-20.04, windows-2019, macos-12, macos-13, macos-14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: oven-sh/setup-bun@v1
+
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: examples
+
+      - name: Install duckdb
+        run: |
+          npm install duckdb
 
       - name: Run minor test
         shell: bash
