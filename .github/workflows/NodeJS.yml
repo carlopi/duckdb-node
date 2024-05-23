@@ -352,7 +352,7 @@ jobs:
 
       - name: Install duckdb
         run: |
-          bun install duckdb
+          bun install duckdb@0.10.2
 
       - name: Run minor test
         shell: bash
@@ -376,7 +376,7 @@ jobs:
 
       - name: Install duckdb
         run: |
-          npm install duckdb
+          npm install duckdb@0.10.2
 
       - name: Run minor test
         shell: bash
