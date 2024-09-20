@@ -8,8 +8,8 @@
 #include "duckdb/planner/expression/bound_lambda_expression.hpp"
 #include "duckdb/planner/expression/bound_cast_expression.hpp"
 #include "duckdb/function/cast/cast_function_set.hpp"
-#include "duckdb/common/serializer/serializer.hpp"
-#include "duckdb/common/serializer/deserializer.hpp"
+#include "duckdb/common/serializer/format_serializer.hpp"
+#include "duckdb/common/serializer/format_deserializer.hpp"
 
 namespace duckdb {
 
@@ -23,22 +23,25 @@ struct ListLambdaBindData : public FunctionData {
 public:
 	bool Equals(const FunctionData &other_p) const override;
 	unique_ptr<FunctionData> Copy() const override;
-
-	static void Serialize(Serializer &serializer, const optional_ptr<FunctionData> bind_data_p,
-	                      const ScalarFunction &function) {
-		//		auto &bind_data = bind_data_p->Cast<ListLambdaBindData>();
-		//		serializer.WriteProperty(100, "stype", bind_data.stype);
-		//		serializer.WritePropertyWithDefault(101, "lambda_expr", bind_data.lambda_expr,
-		// unique_ptr<Expression>());
+	static void Serialize(FieldWriter &writer, const FunctionData *bind_data_p, const ScalarFunction &function) {
 		throw NotImplementedException("FIXME: list lambda serialize");
 	}
-
-	static unique_ptr<FunctionData> Deserialize(Deserializer &deserializer, ScalarFunction &function) {
-		//		auto stype = deserializer.ReadProperty<LogicalType>(100, "stype");
-		//		auto lambda_expr =
-		//		    deserializer.ReadPropertyWithDefault<unique_ptr<Expression>>(101, "lambda_expr",
-		// unique_ptr<Expression>()); 		return make_uniq<ListLambdaBindData>(stype, std::move(lambda_expr));
+	static unique_ptr<FunctionData> Deserialize(PlanDeserializationState &state, FieldReader &reader,
+	                                            ScalarFunction &bound_function) {
 		throw NotImplementedException("FIXME: list lambda deserialize");
+	}
+
+	static void FormatSerialize(FormatSerializer &serializer, const optional_ptr<FunctionData> bind_data_p,
+	                            const ScalarFunction &function) {
+		auto &bind_data = bind_data_p->Cast<ListLambdaBindData>();
+		serializer.WriteProperty(100, "stype", bind_data.stype);
+		serializer.WriteOptionalProperty(101, "lambda_expr", bind_data.lambda_expr);
+	}
+
+	static unique_ptr<FunctionData> FormatDeserialize(FormatDeserializer &deserializer, ScalarFunction &function) {
+		auto stype = deserializer.ReadProperty<LogicalType>(100, "stype");
+		auto lambda_expr = deserializer.ReadOptionalProperty<unique_ptr<Expression>>(101, "lambda_expr");
+		return make_uniq<ListLambdaBindData>(stype, std::move(lambda_expr));
 	}
 };
 
@@ -397,6 +400,8 @@ ScalarFunction ListTransformFun::GetFunction() {
 	fun.null_handling = FunctionNullHandling::SPECIAL_HANDLING;
 	fun.serialize = ListLambdaBindData::Serialize;
 	fun.deserialize = ListLambdaBindData::Deserialize;
+	fun.format_serialize = ListLambdaBindData::FormatSerialize;
+	fun.format_deserialize = ListLambdaBindData::FormatDeserialize;
 	return fun;
 }
 
@@ -406,6 +411,8 @@ ScalarFunction ListFilterFun::GetFunction() {
 	fun.null_handling = FunctionNullHandling::SPECIAL_HANDLING;
 	fun.serialize = ListLambdaBindData::Serialize;
 	fun.deserialize = ListLambdaBindData::Deserialize;
+	fun.format_serialize = ListLambdaBindData::FormatSerialize;
+	fun.format_deserialize = ListLambdaBindData::FormatDeserialize;
 	return fun;
 }
 
