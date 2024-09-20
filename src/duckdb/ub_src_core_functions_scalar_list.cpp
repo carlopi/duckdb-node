@@ -20,3 +20,5 @@
 
 #include "src/core_functions/scalar/list/range.cpp"
 
+#include "src/core_functions/scalar/list/list_lambdas.cpp"
+

@@ -8,3 +8,5 @@
 
 #include "src/function/scalar/list/list_select.cpp"
 
+#include "src/function/scalar/list/list_concat.cpp"
+

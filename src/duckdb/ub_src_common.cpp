@@ -68,3 +68,13 @@
 
 #include "src/common/windows_util.cpp"
 
+#include "src/common/cycle_counter.cpp"
+
+#include "src/common/field_writer.cpp"
+
+#include "src/common/http_state.cpp"
+
+#include "src/common/preserved_error.cpp"
+
+#include "src/common/serializer.cpp"
+

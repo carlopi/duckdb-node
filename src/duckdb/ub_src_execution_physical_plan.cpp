@@ -86,3 +86,7 @@
 
 #include "src/execution/physical_plan/plan_cte.cpp"
 
+#include "src/execution/physical_plan/plan_limit_percent.cpp"
+
+#include "src/execution/physical_plan/plan_show_select.cpp"
+

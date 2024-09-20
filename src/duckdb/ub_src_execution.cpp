@@ -26,3 +26,5 @@
 
 #include "src/execution/window_segment_tree.cpp"
 
+#include "src/execution/partitionable_hashtable.cpp"
+
