@@ -54,5 +54,3 @@
 
 #include "src/common/types/vector_constants.cpp"
 
-#include "src/common/types/chunk_collection.cpp"
-

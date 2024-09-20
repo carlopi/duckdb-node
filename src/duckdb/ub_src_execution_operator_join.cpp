@@ -30,5 +30,3 @@
 
 #include "src/execution/operator/join/physical_right_delim_join.cpp"
 
-#include "src/execution/operator/join/physical_index_join.cpp"
-

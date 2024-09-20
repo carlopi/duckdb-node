@@ -10,9 +10,3 @@
 
 #include "src/common/serializer/serializer.cpp"
 
-#include "src/common/serializer/buffered_deserializer.cpp"
-
-#include "src/common/serializer/buffered_serializer.cpp"
-
-#include "src/common/serializer/format_serializer.cpp"
-

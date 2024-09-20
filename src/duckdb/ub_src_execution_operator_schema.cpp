@@ -20,5 +20,3 @@
 
 #include "src/execution/operator/schema/physical_drop.cpp"
 
-#include "src/execution/operator/schema/physical_create_index.cpp"
-

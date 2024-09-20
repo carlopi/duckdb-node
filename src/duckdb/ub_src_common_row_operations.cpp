@@ -14,5 +14,3 @@
 
 #include "src/common/row_operations/row_heap_gather.cpp"
 
-#include "src/common/row_operations/row_match.cpp"
-

@@ -20,9 +20,3 @@
 
 #include "src/execution/index/art/art.cpp"
 
-#include "src/execution/index/art/fixed_size_allocator.cpp"
-
-#include "src/execution/index/art/node16.cpp"
-
-#include "src/execution/index/art/node4.cpp"
-
